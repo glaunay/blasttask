@@ -1,10 +1,10 @@
 import blastTask = require("../index");
-import jmClient = require("ms-jobmanager/build/nativeJS/job-manager-client");
+import jmClient = require("ms-jobmanager");
 
 import streams = require('stream');
 
 import fs = require("fs");
-
+import util =require("util");
 
 
 let myOptions = {
@@ -17,18 +17,17 @@ let myOptions = {
 };
 
 
-
 let jobManager = jmClient.start({"TCPip": "localhost", "port": "2323"});
 
 jobManager.on("ready", () => {
     let a = new blastTask.blasttask({ "jobManager" : jmClient, "jobProfile" : "default" }, myOptions);
     a.on("processed", (a)=>{
-    //Do smtg w/ output
-
+        console.log(`OOOOO\n${util.inspect(a, {showHidden: false, depth: null})}`);
+        
     });
     fs.readFile("../data/P98160.fasta", function (err, data) {
         if (err) throw err;
-        console.log(data.toString());
+       // console.log(data.toString());
         let container = {"inputF" : data.toString()};
         let fastaStream = new streams.Readable();
         fastaStream.push( JSON.stringify(container));

@@ -19,9 +19,11 @@ export class blasttask extends tk.Task {
 
 /* REMARK : 'pathOfCurrentDir' is the key you gave in your core script as JSON output */
     prepareResults (chunkJson) { // from JSON.parse(pushedJob.stdout)
+    /*
+        console.log("---->");        
         console.log(typeof chunkJson);
-        console.log("---->");
-        console.dir(chunkJson);
+    */
+        //console.dir(chunkJson);
         return {
 		    [this.outKey] : chunkJson.data // This.outKey is a deduced from downstream adressed slot, picked from slotSymbol
 	    }

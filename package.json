@@ -9,7 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "taskobject": "^2.1.0",
-    "ms-jobmanager": "^1.0.0"
+    "ms-jobmanager": "^1.0.1"
   },
   "devDependencies": {},
   "description": ""
